@@ -37,7 +37,7 @@ function sum(...numbers: number[]): number {
   return numbers.reduce((acc, n) => acc + n, 0);
 }
 
-console.log(sum(1, 2, 3)); // 6
+//console.log(sum(1, 2, 3)); // 6
 // console.log(sum(1, "2", 3));         // Error: 'string' no es asignable a 'number'
 
 // 5) Objeto como parámetro con contrato explícito
@@ -52,7 +52,7 @@ function registerBooking({ name, date, dateEnd, origin }: Booking): string {
   return `${name}: ${date.toISOString()} -> ${dateEnd.toISOString()} (${origin ?? "sin origen"})`;
 }
 
-console.log(registerBooking({ name: "Lincoln", date: new Date("2024-01-01"), dateEnd: new Date("2024-01-10") }));
+console.log(registerBooking({ name: "Lincoln", date: new Date("2024-01-01"), dateEnd: new Date("2024-01-10"), origin: "Lima" }));
 // console.log(registerBooking({ name: "Lincoln", from: new Date("2024-01-01"), to: new Date("2024-01-10") }));
 // Error: 'from' no existe en el tipo 'Booking'  <- el typo se detecta al escribir
 
