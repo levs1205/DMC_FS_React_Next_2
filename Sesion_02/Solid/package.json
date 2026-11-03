@@ -1,0 +1,38 @@
+{
+  "name": "solid-typescript",
+  "version": "1.0.0",
+  "description": "Ejemplos de los principios SOLID en TypeScript, ejecutables directamente con Node 24",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "srp:1": "node 01-srp/01-reporte-ventas.ts",
+    "srp:2": "node 01-srp/02-registro-usuario.ts",
+    "srp:3": "node 01-srp/03-factura.ts",
+    "ocp:1": "node 02-ocp/01-descuentos.ts",
+    "ocp:2": "node 02-ocp/02-areas-figuras.ts",
+    "ocp:3": "node 02-ocp/03-metodos-pago.ts",
+    "lsp:1": "node 03-lsp/01-aves.ts",
+    "lsp:2": "node 03-lsp/02-rectangulo-cuadrado.ts",
+    "lsp:3": "node 03-lsp/03-cuentas-bancarias.ts",
+    "isp:1": "node 04-isp/01-trabajadores.ts",
+    "isp:2": "node 04-isp/02-impresoras.ts",
+    "isp:3": "node 04-isp/03-repositorios.ts",
+    "dip:1": "node 05-dip/01-notificador-pedidos.ts",
+    "dip:2": "node 05-dip/02-servicio-usuarios.ts",
+    "dip:3": "node 05-dip/03-logger.ts",
+    "srp": "npm run srp:1 && npm run srp:2 && npm run srp:3",
+    "ocp": "npm run ocp:1 && npm run ocp:2 && npm run ocp:3",
+    "lsp": "npm run lsp:1 && npm run lsp:2 && npm run lsp:3",
+    "isp": "npm run isp:1 && npm run isp:2 && npm run isp:3",
+    "dip": "npm run dip:1 && npm run dip:2 && npm run dip:3",
+    "all": "npm run srp && npm run ocp && npm run lsp && npm run isp && npm run dip",
+    "typecheck": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0"
+  }
+}
