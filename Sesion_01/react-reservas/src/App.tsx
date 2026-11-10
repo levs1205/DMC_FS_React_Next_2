@@ -11,7 +11,7 @@ function App() {
   return (
     <section id="center">
       <Saludo nombre="Ana" />
-      <button onClick={() => setLikes(likes + 1)}>
+      <button className="like-button" onClick={() => setLikes(likes + 1)}>
         👍 {likes} likes
       </button>
     </section>
