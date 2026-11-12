@@ -1,0 +1,239 @@
+/* Usa las variables de color de index.css (modo claro y oscuro). */
+
+.pagina {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 40px 32px 56px;
+  text-align: left;
+}
+
+.pagina *,
+.pagina *::before,
+.pagina *::after {
+  box-sizing: border-box;
+}
+
+.pagina__encabezado h1 {
+  margin: 0 0 8px;
+  font-size: 40px;
+  letter-spacing: -1px;
+}
+
+.pagina__encabezado p {
+  color: var(--text);
+}
+
+/* ── Formulario de búsqueda ─────────────────────────────── */
+.buscador {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: start;
+  gap: 16px;
+  margin: 28px 0 32px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--social-bg);
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.campo__etiqueta {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.campo__input {
+  font: inherit;
+  font-size: 16px;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-h);
+}
+
+.campo__input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.campo__input[aria-invalid='true'] {
+  border-color: #c62828;
+}
+
+.campo__error {
+  font-size: 14px;
+  color: #c62828;
+}
+
+.buscador__boton {
+  /* Alinea el botón con los inputs (debajo de la etiqueta). */
+  margin-top: 27px;
+}
+
+/* ── Botón ──────────────────────────────────────────────── */
+.boton {
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
+}
+
+.boton:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.boton--primario {
+  background: #6d28d9;
+  color: #fff;
+}
+
+.boton--primario:hover:not(:disabled) {
+  background: #5b21b6;
+}
+
+.boton--secundario {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--accent-border);
+}
+
+.boton:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+/* ── Resultados ─────────────────────────────────────────── */
+.resultados__titulo {
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+
+.mensaje {
+  padding: 16px;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+}
+
+.mensaje--error {
+  border: 1px solid #c62828;
+  color: #c62828;
+}
+
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.grilla-habitaciones {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+/* ── Tarjeta ────────────────────────────────────────────── */
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 100%;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  box-shadow: var(--shadow);
+}
+
+.tarjeta__encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.tarjeta__nombre {
+  margin: 0;
+  font-size: 18px;
+  color: var(--text-h);
+}
+
+.tarjeta__tipo {
+  flex-shrink: 0;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.tarjeta__datos {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  font-size: 15px;
+}
+
+.tarjeta__datos div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.tarjeta__datos dt {
+  color: var(--text);
+}
+
+.tarjeta__datos dd {
+  margin: 0;
+  color: var(--text-h);
+  font-weight: 500;
+}
+
+.tarjeta__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  color: var(--text-h);
+}
+
+.tarjeta__total strong {
+  font-size: 20px;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .pagina {
+    padding: 24px 16px 40px;
+  }
+
+  .pagina__encabezado h1 {
+    font-size: 30px;
+  }
+
+  .buscador {
+    grid-template-columns: 1fr;
+  }
+
+  .buscador__boton {
+    margin-top: 0;
+    width: 100%;
+  }
+}
