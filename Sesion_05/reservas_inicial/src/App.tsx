@@ -1,5 +1,5 @@
 import './App.css'
-import AvailabilitySearch from './AvailabilitySearch';
+import AvailabilitySearch from './features/availability/ui/AvailabilitySearch';
 
 function App() {
   return (

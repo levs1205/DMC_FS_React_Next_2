@@ -1,6 +1,7 @@
 import { useState } from "react";
-import DateField from "./shared/ui/DateField";
-import { addDays, getShortDate } from "./shared/util";
+import DateField from "../../../shared/ui/DateField";
+import { addDays, getShortDate } from "../../../shared/util";
+import { Button } from "../../../shared/ui/Button";
 
 function AvailabilitySearch() {
   const [inDate, setInDate] = useState("");
@@ -28,6 +29,11 @@ function AvailabilitySearch() {
           label="Fecha de salida"
           onChange={setOutDate}
           min={minOutDate}
+        />
+        <Button
+          text="Buscar"
+          type="submit"
+          className="buscador__boton"
         />
       </form>
     </>
