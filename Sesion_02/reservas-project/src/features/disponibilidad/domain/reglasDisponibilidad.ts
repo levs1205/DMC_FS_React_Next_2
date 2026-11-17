@@ -4,8 +4,8 @@ import { noches, type RangoFechas } from './rangoFechas.ts'
 
 /** Total a pagar por la habitación durante todo el rango. */
 export function calcularTotal(habitacion: Habitacion, rango: RangoFechas): number {
-  const total = habitacion.precioPorNoche * noches(rango)
-  return Math.round(total * 100) / 100
+  const total = habitacion.precioPorNoche * noches(rango)  //5.236
+  return Math.round(total * 100) / 100 // 523.6 --> 524 --> 5.24
 }
 
 /**

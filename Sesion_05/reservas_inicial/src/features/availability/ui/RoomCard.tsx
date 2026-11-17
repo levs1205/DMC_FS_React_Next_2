@@ -1,6 +1,5 @@
-import type { AvailabillityRoom } from '../domain/room.ts'
-import type { TipoHabitacion } from '../domain/habitacion.ts'
-import { formatearSoles } from '../../../shared/ui/formato.ts'
+import type { AvailabillityRoom, RoomType } from '../domain/room.ts'
+import { formatearSoles } from '../../../shared/util';
 
 /** ISP: recibe solo lo que muestra (sin `id` ni nada más). */
 type TarjetaHabitacionProps = Pick<
@@ -8,7 +7,7 @@ type TarjetaHabitacionProps = Pick<
   'nombre' | 'tipo' | 'capacidad' | 'precioPorNoche' | 'noches' | 'total'
 >
 
-const etiquetaTipo: Record<TipoHabitacion, string> = {
+const etiquetaTipo: Record<RoomType, string> = {
   simple: 'Simple',
   doble: 'Doble',
   suite: 'Suite',

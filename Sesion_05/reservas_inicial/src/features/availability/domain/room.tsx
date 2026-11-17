@@ -15,3 +15,9 @@ export type AvailabillityRoom = Room &
     noches: number;
     total: number;
   }>;
+
+export type Ocupacion = Readonly<{
+  habitacionId: Room['id']
+  inicio: Date
+  fin: Date
+}>

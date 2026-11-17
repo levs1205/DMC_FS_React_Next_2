@@ -30,3 +30,27 @@ export function getShortDate(dateIn?: Date | string): string {
   const day = String(date.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
 }
+
+const formatoSoles = new Intl.NumberFormat('es-PE', { style: 'currency', currency: 'PEN' })
+
+export function formatearSoles(monto: number): string {
+  return formatoSoles.format(monto)
+}
+
+
+export function diffDays(start: Date | string, end: Date | string): number {
+  const toLocalDate = (v: Date | string): Date => {
+    const m = typeof v === 'string' ? /^(\d{4})-(\d{2})-(\d{2})$/.exec(v) : null;
+    const d = m ? new Date(+m[1], +m[2] - 1, +m[3]) : new Date(v);
+    if (Number.isNaN(d.getTime())) throw new TypeError(`Fecha inválida: ${String(v)}`);
+    return d;
+  };
+
+  const a = toLocalDate(start);
+  const b = toLocalDate(end);
+
+  const utcA = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+  const utcB = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+
+  return (utcB - utcA) / 86_400_000;
+}
