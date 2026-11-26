@@ -5,8 +5,8 @@ import { toReservationDTO, type ReservationDTO } from "../dto/ReservationDTO";
 export class GetReservation {
   constructor(private readonly reservations: ReservationRepository) {}
 
-  async execute(userId: string, id: string): Promise<ReservationDTO> {
-    const reservation = await this.reservations.findByIdAndUser(id, userId);
+  async execute(userId: string, code: string): Promise<ReservationDTO> {
+    const reservation = await this.reservations.findByCodeAndUser(code, userId);
 
     if (!reservation) {
       throw new DomainError("Reserva no encontrada", "NOT_FOUND");

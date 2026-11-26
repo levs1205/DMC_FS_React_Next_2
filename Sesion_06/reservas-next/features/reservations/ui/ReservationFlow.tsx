@@ -3,7 +3,15 @@
 import { SearchForm } from "@/features/availability/ui/SearchForm";
 import { RoomList } from "@/features/availability/ui/RoomList";
 import { formatDate, formatMoney } from "@/shared/ui/format";
+import type { ReservationStatus } from "../domain/value-objects/ReservationStatus";
 import { useReservationFlow } from "./useReservationFlow";
+
+const STATUS_LABEL: Record<ReservationStatus, string> = {
+  PENDING: "pendiente de pago",
+  CONFIRMED: "confirmada",
+  COMPLETED: "completada",
+  CANCELLED: "cancelada",
+};
 
 export function ReservationFlow() {
   const { result, selectedRoomId, confirmation, error, loading, search, selectRoom, reserve } =
@@ -21,9 +29,9 @@ export function ReservationFlow() {
 
       {confirmation && (
         <p role="status" className="mensaje mensaje--exito">
-          Reserva <strong>{confirmation.id}</strong> guardada: {confirmation.roomName}, del{" "}
-          {formatDate(confirmation.startDate)} al {formatDate(confirmation.endDate)} · Total{" "}
-          {formatMoney(confirmation.total)}
+          Reserva <strong>{confirmation.code}</strong> registrada ({STATUS_LABEL[confirmation.status]}):{" "}
+          {confirmation.roomName}, del {formatDate(confirmation.startDate)} al{" "}
+          {formatDate(confirmation.endDate)} · Total {formatMoney(confirmation.totalAmount)}
         </p>
       )}
 

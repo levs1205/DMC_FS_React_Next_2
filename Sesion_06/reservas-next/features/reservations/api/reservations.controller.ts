@@ -28,12 +28,11 @@ export class ReservationsController {
     return Response.json(await this.useCases.list.execute(getCurrentUser().id));
   }
 
-  async findById(id: string): Promise<Response> {
-    return Response.json(await this.useCases.get.execute(getCurrentUser().id, id));
+  async findByCode(code: string): Promise<Response> {
+    return Response.json(await this.useCases.get.execute(getCurrentUser().id, code));
   }
 
-  async cancel(id: string): Promise<Response> {
-    await this.useCases.cancel.execute(getCurrentUser().id, id);
-    return new Response(null, { status: 204 });
+  async cancel(code: string): Promise<Response> {
+    return Response.json(await this.useCases.cancel.execute(getCurrentUser().id, code));
   }
 }

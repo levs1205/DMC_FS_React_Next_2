@@ -11,10 +11,11 @@ interface SearchFormProps {
 export function SearchForm({ loading, onSearch }: SearchFormProps) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [guests, setGuests] = useState(1);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    onSearch({ startDate, endDate });
+    onSearch({ startDate, endDate, guests });
   }
 
   return (
@@ -39,6 +40,19 @@ export function SearchForm({ loading, onSearch }: SearchFormProps) {
           min={startDate || undefined}
           value={endDate}
           onChange={(event) => setEndDate(event.target.value)}
+        />
+      </label>
+
+      <label className="campo">
+        <span className="campo__etiqueta">Huéspedes</span>
+        <input
+          className="campo__input"
+          type="number"
+          required
+          min={1}
+          max={10}
+          value={guests}
+          onChange={(event) => setGuests(event.target.valueAsNumber)}
         />
       </label>
 

@@ -1,7 +1,7 @@
 import type { Room } from "./Room";
 import type { DateRange } from "../value-objects/DateRange";
 
-/** Una habitación libre para un rango de fechas, con el precio de la estadía. */
+/** Una habitación para un rango de fechas, con el precio de la estadía. */
 export class Availability {
   constructor(
     readonly room: Room,
@@ -12,7 +12,8 @@ export class Availability {
     return this.range.nights;
   }
 
+  /** totalAmount = noches × tarifa por noche (se calcula en céntimos para no perder precisión). */
   get total(): number {
-    return Math.round(this.room.pricePerNight * this.nights * 100) / 100;
+    return (Math.round(this.room.pricePerNight * 100) * this.nights) / 100;
   }
 }

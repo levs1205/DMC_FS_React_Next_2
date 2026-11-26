@@ -1,11 +1,19 @@
 export interface CurrentUser {
   id: string;
-  name: string;
+  email: string;
+  fullName: string;
 }
 
-const MOCK_USER: CurrentUser = { id: "user-demo", name: "Usuario Demo" };
+/**
+ * Usuario en duro mientras no exista login. Existe en la BD: lo crea prisma/seed.ts
+ * con este mismo id, así las reservas cumplen la clave foránea user_id.
+ */
+export const DEMO_USER: CurrentUser = {
+  id: "usr_demo_guest",
+  email: "huesped.demo@hotel.pe",
+  fullName: "Huésped Demo",
+};
 
-/** Mientras no exista autenticación, todas las peticiones pertenecen al usuario mock. */
 export function getCurrentUser(): CurrentUser {
-  return MOCK_USER;
+  return DEMO_USER;
 }

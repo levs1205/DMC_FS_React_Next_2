@@ -8,21 +8,28 @@ import { toReservationDTO, type CreateReservationInput, type ReservationDTO } fr
 
 export class CreateReservation {
   constructor(
-    private readonly availability: AvailabilityRepository,
+    private readonly rooms: AvailabilityRepository,
     private readonly reservations: ReservationRepository,
   ) {}
 
   async execute(userId: string, input: CreateReservationInput): Promise<ReservationDTO> {
     const range = DateRange.forNewStay(input.startDate, input.endDate);
-    const availableRooms = await this.availability.findAvailableRooms(range);
-    const room = availableRooms.find(({ id }) => id === input.roomId);
+    const room = await this.rooms.findRoomById(input.roomId);
 
     if (!room) {
-      throw new DomainError("La habitación no está disponible para las fechas seleccionadas", "CONFLICT");
+      throw new DomainError("La habitación no existe", "NOT_FOUND");
     }
 
-    const reservation = Reservation.create(userId, new Availability(room, range));
-    await this.reservations.save(reservation);
+    const reservation = Reservation.create({
+      userId,
+      availability: new Availability(room, range),
+      guests: input.guests,
+      notes: input.notes,
+    });
+
+    if (!(await this.reservations.createIfRoomAvailable(reservation))) {
+      throw new DomainError("La habitación no está disponible para las fechas seleccionadas", "CONFLICT");
+    }
     return toReservationDTO(reservation);
   }
 }

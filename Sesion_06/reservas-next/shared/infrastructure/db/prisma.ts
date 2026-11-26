@@ -1,3 +1,16 @@
-// Pendiente: singleton de PrismaClient (cliente generado en /generated/prisma).
-// Mientras tanto los repositorios usan la base en memoria de ./mockDb.ts.
-export {};
+import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaClient } from "@/generated/prisma/client";
+
+function createPrismaClient() {
+  const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
+  return new PrismaClient({ adapter });
+}
+
+// Singleton: el hot reload de `next dev` recarga módulos y crearía un pool de conexiones por recarga.
+const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
+
+export const prisma = globalForPrisma.prisma ?? createPrismaClient();
+
+if (process.env.NODE_ENV !== "production") {
+  globalForPrisma.prisma = prisma;
+}

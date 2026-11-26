@@ -40,11 +40,13 @@ export function useReservationFlow() {
     run(async () => {
       if (!result || !selectedRoomId) return;
 
-      const { startDate, endDate } = result;
-      setConfirmation(await createReservation({ roomId: selectedRoomId, startDate, endDate }));
+      const { startDate, endDate, guests } = result;
+      setConfirmation(
+        await createReservation({ roomId: selectedRoomId, startDate, endDate, guests }),
+      );
       setSelectedRoomId(null);
       // Refresca la lista: la habitación reservada ya no debe aparecer.
-      setResult(await searchAvailability({ startDate, endDate }));
+      setResult(await searchAvailability({ startDate, endDate, guests }));
     });
 
   return {

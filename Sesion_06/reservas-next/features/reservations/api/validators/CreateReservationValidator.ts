@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { isoDate } from "@/shared/api/validation/rules";
+import { guests, isoDate } from "@/shared/api/validation/rules";
 import type { CreateReservationInput } from "../../application/dto/ReservationDTO";
 
 export const createReservationSchema = Joi.object<CreateReservationInput>({
@@ -9,4 +9,8 @@ export const createReservationSchema = Joi.object<CreateReservationInput>({
   }),
   startDate: isoDate("La fecha de inicio"),
   endDate: isoDate("La fecha de fin"),
+  guests: guests().required(),
+  notes: Joi.string().trim().max(500).allow("").label("Las notas").messages({
+    "string.max": "{#label} no pueden superar los {#limit} caracteres",
+  }),
 });

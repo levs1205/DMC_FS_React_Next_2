@@ -12,11 +12,12 @@ export class SearchAvailability {
 
   async execute(input: SearchAvailabilityInput): Promise<SearchAvailabilityOutput> {
     const range = DateRange.forNewStay(input.startDate, input.endDate);
-    const rooms = await this.repository.findAvailableRooms(range);
+    const rooms = await this.repository.findAvailableRooms(range, input.guests);
 
     return {
       startDate: range.start,
       endDate: range.end,
+      guests: input.guests,
       nights: range.nights,
       rooms: rooms.map((room) => toDTO(new Availability(room, range))),
     };
@@ -26,9 +27,12 @@ export class SearchAvailability {
 function toDTO({ room, nights, total }: Availability): AvailableRoomDTO {
   return {
     roomId: room.id,
+    number: room.number,
     name: room.name,
+    description: room.description,
     type: room.type,
     capacity: room.capacity,
+    amenities: room.amenities,
     pricePerNight: room.pricePerNight,
     nights,
     total,

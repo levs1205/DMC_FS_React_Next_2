@@ -139,7 +139,7 @@ code {
 /* ── Formulario de búsqueda ─────────────────────────────── */
 .buscador {
   display: grid;
-  grid-template-columns: 1fr 1fr auto;
+  grid-template-columns: 1fr 1fr minmax(90px, 0.5fr) auto;
   align-items: start;
   gap: 16px;
   margin: 28px 0 32px;
@@ -374,4 +374,9 @@ code {
   display: flex;
   justify-content: flex-end;
   margin-top: 24px;
+}
+
+.tarjeta__amenidades {
+  font-size: 13px;
+  color: var(--text);
 }

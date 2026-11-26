@@ -22,10 +22,17 @@ async function request<T>(url: string, init?: RequestInit): Promise<T> {
   return body as T;
 }
 
+type QueryParams = Record<string, string | number>;
+
+function withQuery(url: string, params?: QueryParams): string {
+  if (!params) return url;
+  const entries = Object.entries(params).map(([key, value]) => [key, String(value)]);
+  return `${url}?${new URLSearchParams(entries)}`;
+}
+
 export const apiClient = {
-  get: <T>(url: string, params?: Record<string, string>) =>
-    request<T>(params ? `${url}?${new URLSearchParams(params)}` : url),
+  get: <T>(url: string, params?: QueryParams) => request<T>(withQuery(url, params)),
   post: <T>(url: string, body: unknown) =>
     request<T>(url, { method: "POST", body: JSON.stringify(body) }),
-  delete: (url: string) => request<void>(url, { method: "DELETE" }),
+  delete: <T>(url: string) => request<T>(url, { method: "DELETE" }),
 };

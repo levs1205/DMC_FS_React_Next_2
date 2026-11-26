@@ -3,12 +3,12 @@ import { reservationsController } from "@/features/reservations/infrastructure/c
 
 type Context = RouteContext<"/api/reservations/[id]">;
 
-// GET /api/reservations/:id
+// GET /api/reservations/RES-XXXXXXXX  (el id es el código de la reserva)
 export const GET = handleRoute<Context>(async (_request, { params }) =>
-  reservationsController.findById((await params).id),
+  reservationsController.findByCode((await params).id),
 );
 
-// DELETE /api/reservations/:id → cancela la reserva
+// DELETE /api/reservations/RES-XXXXXXXX → la reserva pasa a CANCELLED
 export const DELETE = handleRoute<Context>(async (_request, { params }) =>
   reservationsController.cancel((await params).id),
 );
