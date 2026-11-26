@@ -350,3 +350,28 @@ code {
     width: 100%;
   }
 }
+
+/* ── Selección y confirmación de reserva ────────────────── */
+.mensaje {
+  margin-bottom: 24px;
+}
+
+.mensaje--exito {
+  border: 1px solid #2e7d32;
+  color: #2e7d32;
+}
+
+.tarjeta--seleccionada {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+}
+
+.boton--secundario[aria-pressed='true'] {
+  background: var(--accent-bg);
+}
+
+.acciones {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}

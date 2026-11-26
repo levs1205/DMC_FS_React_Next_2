@@ -1,0 +1,2 @@
+// Pendiente: definición de la base de datos (modelos Room y Reservation).
+// Por ahora la app trabaja con datos mock: shared/infrastructure/db/mockDb.ts
